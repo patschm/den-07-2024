@@ -11,10 +11,10 @@ internal class Program
 {
     static void Main(string[] args)
     {
-        DIClient();
+        //DIClient();
         StrongClient();
-        AuthicateClient();
-        AdvancedClient();
+        //AuthicateClient();
+        //AdvancedClient();
     }
 
     private static void DIClient()

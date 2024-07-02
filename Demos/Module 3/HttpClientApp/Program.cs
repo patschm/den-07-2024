@@ -16,12 +16,24 @@ public class Program
 {
     static void Main(string[] args)
     {
-        BasicGetClient();
-        BasicPostClient();
+        //VeelClients();
+        //BasicGetClient();
+        //BasicPostClient();
         AdvancedClient();
-        BearerClient();
-        AuthenticateClient();
-        ResilienceClient();
+        //BearerClient();
+        //AuthenticateClient();
+        //ResilienceClient();
+    }
+
+    static HttpClient client = new HttpClient();
+    private static void VeelClients()
+    {
+        client.BaseAddress = new Uri("https://localhost:8001/");
+       for(int i = 0; i < 1000; i++)
+        {
+            var response = client.GetAsync("WeatherForecast").Result;
+            Console.WriteLine($"Request {i}");
+        }
     }
 
     private static void BasicGetClient()
@@ -32,6 +44,8 @@ public class Program
         var response = client.GetAsync("WeatherForecast").Result;
         if (response.IsSuccessStatusCode)
         {
+            Console.WriteLine(response.Headers.Server);
+            Console.WriteLine(response.Content.Headers.ContentEncoding);
             var strData = response.Content.ReadAsStringAsync().Result;
             Console.WriteLine(strData);
         }
@@ -106,7 +120,8 @@ public class Program
             .AddRetry(new HttpRetryStrategyOptions
             {
                 MaxRetryAttempts = 3,
-                BackoffType = DelayBackoffType.Linear
+                BackoffType = DelayBackoffType.Linear,
+               Delay = TimeSpan.FromMinutes(4) 
             }).Build();
 
         // Experimental
