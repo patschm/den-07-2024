@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.IO.IsolatedStorage;
 
 // Used Nuget packages:
 // Microsoft.Extensions.Configuration
@@ -25,9 +26,9 @@ internal class Program
         //LoggingBare();
         //LoggingWithSettings();
         //LoggingCustom();
-        DependencyInjection();
+        //DependencyInjection();
         //AllInOneOld();
-        //AllInOneApp();
+        AllInOneApp();
     }
 
     private static void EnvironmentSettings()
@@ -49,7 +50,7 @@ internal class Program
         // set DOTNET_NAME=Jan
         // dotnet run
         // Optionally add: --no-launch-profile or --launch-profile EnvironmentSample"
-        Console.WriteLine(Environment.GetEnvironmentVariable("DOTNET_NAME"));
+        Console.WriteLine(Environment.GetEnvironmentVariable("4DOTNET_NAME"));
         
     }
     private static void Configuration()
@@ -60,7 +61,7 @@ internal class Program
         bld.SetBasePath(Environment.CurrentDirectory);
         bld.AddJsonFile("appsettings.json", optional:true, reloadOnChange:false);
         // bld.AddXmlFile("config.xml");
-        // bld.AddIniFile("startup.ini");
+        //bld.AddIniFile("startup.ini");
         IConfiguration config = bld.Build();
 
         // Read single entry
@@ -68,8 +69,8 @@ internal class Program
         Console.WriteLine(nameSection.Value);
         // Read collection. Use extensions from package Microsoft.Extensions.Configuration.Binder
         var hobbiesSection = config.GetSection("MyConfiguration:Hobbies");
-        var data1 = hobbiesSection.Get<string[]>();
-        Console.WriteLine(string.Join(',', data1!));
+       // var data1 = hobbiesSection.Get<string[]>();
+        //Console.WriteLine(string.Join(',', data1!));
         // Read complex object
         var addressSection = config.GetSection("MyConfiguration:Address");
         var address=  addressSection.Get<Address>();
@@ -86,6 +87,9 @@ internal class Program
         bld.AddUserSecrets<Program>();
         IConfiguration config = bld.Build();
 
+
+        var c1 = config.GetConnectionString("Constr");
+        Console.WriteLine(c1);
         // Set and read a secret at command line:
         // If not done: dotnet user-secrets init
         // dotnet user-secrets set "Big:Secret" "Password" (optionally add for which project: --project "D:\Net Essentials\Demos\Module 2\InfraStructure)"
@@ -101,13 +105,15 @@ internal class Program
     private static void LoggingBare()
     {
         var factory = LoggerFactory.Create(bld => {
-            bld.AddFilter((cat, lvl) => {
-                return cat == typeof(LogVictim).FullName && lvl <= LogLevel.Information;
+            bld.AddFilter((cat, lvl) =>
+            {
+                return cat == typeof(LogVictim).FullName && lvl >= LogLevel.Warning;
             });
-        
+
             bld.ClearProviders();
             // From package: Microsoft.Extensions.Logging.Console
             bld.AddConsole();
+            //bld.AddEventLog();
         });
 
         ILogger<LogVictim> logger = factory.CreateLogger<LogVictim>();
@@ -144,6 +150,7 @@ internal class Program
 
             bld.ClearProviders();
             bld.AddCustomLogger();
+
         });
 
         ILogger<LogVictim> logger = factory.CreateLogger<LogVictim>();
@@ -156,8 +163,8 @@ internal class Program
         var services = new ServiceCollection();
         var builder = factory.CreateBuilder(services);
         builder.AddHostedService<ConsoleHost>();
-        builder.AddTransient<ICounter, Counter>();
-        //builder.AddScoped<ICounter, Counter>();
+        //builder.AddTransient<ICounter, Counter>();
+        builder.AddScoped<ICounter, Counter>();
         //builder.AddSingleton<ICounter, Counter>();
 
         // .NET 8
@@ -238,13 +245,13 @@ internal class Program
         var host = Host.CreateApplicationBuilder();
         host.Configuration.AddJsonFile("appsettings.json"); // Not needed. Is Default
         host.Services.AddHostedService<ConsoleHost2>();
-        host.Services.AddScoped<ICounter, Counter>();
+        host.Services.AddTransient<ICounter, CrappyCounter>();
         host.Services.AddTransient<LogVictim>();
         host.Logging.AddConsole(); // Not needed. Is default
         var app = host.Build();
 
-        var logvictim = app.Services.GetRequiredService<LogVictim>();
-        logvictim.DoSomeStuff();
+        //var logvictim = app.Services.GetRequiredService<LogVictim>();
+       // logvictim.DoSomeStuff();
 
         app.Run();
     }

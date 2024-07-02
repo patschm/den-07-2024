@@ -3,7 +3,8 @@
     "EnvironmentSample": {
       "commandName": "Project",
       "environmentVariables": {
-        "DOTNET_ENVIRONMENT": "Production"
+        "DOTNET_ENVIRONMENT": "Production",
+        "4DOTNET_NAME": "Launch Settings"
       }
     }
   }

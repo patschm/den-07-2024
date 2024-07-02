@@ -12,7 +12,7 @@ public class LogVictim
     }
 
     public void DoSomeStuff()
-    {
+    {      
         _logger.LogCritical("Critical (5)");
         _logger.LogError("Error (4)");
         _logger.LogWarning("Warning (3)");

@@ -5,8 +5,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <UserSecretsId>0ef5db91-14aa-4f14-8953-2b5c9616eb78</UserSecretsId>
-    <SignAssembly>False</SignAssembly>
+   <SignAssembly>False</SignAssembly>
+    <UserSecretsId>96d264fa-03f0-4cbb-b3fa-d4885e639e99</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

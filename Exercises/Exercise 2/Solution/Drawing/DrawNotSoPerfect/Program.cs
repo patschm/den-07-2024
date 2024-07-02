@@ -18,6 +18,25 @@ internal static class Program
     {
         // TODO 2: Modify this code to wire up the Dependency Injection infrastructure.
         // TODO 3: Register LocalFileStorage class in the Dependency Injector
+        //var factory = new DefaultServiceProviderFactory();
+        //var services = new ServiceCollection();
+        //var builder = factory.CreateBuilder(services);
+        //builder.AddTransient<DrawMain>();
+        //builder.AddSingleton<IStorage, LocalFileStorage>();
+        //var prov = builder.BuildServiceProvider();
+
+        //var builder2 = new ConfigurationBuilder();
+        //builder2.SetBasePath(Environment.CurrentDirectory);
+        //builder2.AddJsonFile("appsettings.json");
+        //var config = builder2.Build();
+
+        //var factory2 = LoggerFactory.Create(bld => {
+        //    bld.AddConfiguration(config.GetSection("Logging"));
+
+        //    bld.ClearProviders();
+        //    bld.AddConsole();
+        //});
+
 
         // TODO 5: Configure logging. Clear all log providers and add the Debug Provider
         // (writes output to "Output" window in Visual Studio).
