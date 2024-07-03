@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Criepto", "Criepto\Criepto.csproj", "{548F1B1F-FD37-40D8-B982-257F2AC9BE6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Onleesbaar", "Onleesbaar\Onleesbaar.csproj", "{C708DB0C-6039-4583-B319-A24F173AA856}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{548F1B1F-FD37-40D8-B982-257F2AC9BE6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{548F1B1F-FD37-40D8-B982-257F2AC9BE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{548F1B1F-FD37-40D8-B982-257F2AC9BE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{548F1B1F-FD37-40D8-B982-257F2AC9BE6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C708DB0C-6039-4583-B319-A24F173AA856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C708DB0C-6039-4583-B319-A24F173AA856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C708DB0C-6039-4583-B319-A24F173AA856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C708DB0C-6039-4583-B319-A24F173AA856}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ABD59D17-78F5-49FF-96F9-DC62CDCAAA26}
+	EndGlobalSection
+EndGlobal

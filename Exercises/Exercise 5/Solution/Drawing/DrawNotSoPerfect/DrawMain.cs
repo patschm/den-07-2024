@@ -197,28 +197,23 @@ namespace DrawNotSoPerfect
 
         private void StorageLocator_Changed(object? sender, EventArgs e)
         {
-            ClearFormatMenu();
-
-
-            foreach (var item in _storageLocator!.StorageOptions)
+            this.Invoke(() =>
             {
-                var menu = new ToolStripMenuItem();
-                menu.Text = item.Name;
-                menu.Checked = false;
-                menu.Tag = item;
-                menu.Click += Menu_Click;
-                this.Invoke(() => {  
-                    saveFormatToolStripMenuItem.DropDownItems.Add(menu);
-                }, menu);
-               
-            }
-            if (saveFormatToolStripMenuItem.DropDownItems.Count > 0)
-            {
-                this.Invoke(() =>
+                ClearFormatMenu();
+                foreach (var item in _storageLocator!.StorageOptions)
                 {
-                    saveFormatToolStripMenuItem.DropDownItems[0].PerformClick();
-                });
-            }
+                    var menu = new ToolStripMenuItem();
+                    menu.Text = item.Name;
+                    menu.Checked = false;
+                    menu.Tag = item;
+                    menu.Click += Menu_Click;
+                    saveFormatToolStripMenuItem.DropDownItems.Add(menu);
+                }
+                if (saveFormatToolStripMenuItem.DropDownItems.Count > 0)
+                {
+                    saveFormatToolStripMenuItem.DropDownItems[0].PerformClick();                
+                }
+            });
         }
 
         private void ClearFormatMenu()
@@ -227,10 +222,7 @@ namespace DrawNotSoPerfect
             {
                 item.Click -= Menu_Click;
             }
-            this.Invoke(() =>
-            {
-                saveFormatToolStripMenuItem.DropDownItems.Clear();
-            });
+            saveFormatToolStripMenuItem.DropDownItems.Clear();       
         }
 
         private void Menu_Click(object? sender, EventArgs e)
