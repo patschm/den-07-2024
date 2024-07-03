@@ -2,6 +2,7 @@
 
 
 
+using System.Globalization;
 using System.Threading.Tasks.Dataflow;
 
 namespace Draadje
@@ -26,7 +27,12 @@ namespace Draadje
             //ParellelTasks();
             // Hakken();
             //DeGarage();
-            AsyncRekenenAsync();
+            //AsyncRekenenAsync();
+            //CultureInfo ci = Thread.CurrentThread.CurrentCulture;
+            //Thread.CurrentThread.CurrentCulture = new CultureInfo("nl-NL");
+            //Console.WriteLine(ci.);
+            //Console.WriteLine();
+
             Console.WriteLine("Eind programma");
             Console.ReadLine();
         }
