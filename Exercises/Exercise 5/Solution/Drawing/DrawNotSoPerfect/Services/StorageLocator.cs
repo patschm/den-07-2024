@@ -34,6 +34,7 @@ internal class StorageLocator
     {
         StorageOptions.Clear();
         var files = Directory.GetFiles(_pluginPath);
+        Task.Delay(10).Wait();
         // TODO 1
         // Run the application and check under the menu item 
         // Options->Save Format. There should be at least a JSON option.

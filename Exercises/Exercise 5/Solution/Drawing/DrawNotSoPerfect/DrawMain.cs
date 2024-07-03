@@ -207,11 +207,17 @@ namespace DrawNotSoPerfect
                 menu.Checked = false;
                 menu.Tag = item;
                 menu.Click += Menu_Click;
-                saveFormatToolStripMenuItem.DropDownItems.Add(menu);
+                this.Invoke(() => {  
+                    saveFormatToolStripMenuItem.DropDownItems.Add(menu);
+                }, menu);
+               
             }
             if (saveFormatToolStripMenuItem.DropDownItems.Count > 0)
             {
-                saveFormatToolStripMenuItem.DropDownItems[0].PerformClick();
+                this.Invoke(() =>
+                {
+                    saveFormatToolStripMenuItem.DropDownItems[0].PerformClick();
+                });
             }
         }
 
@@ -221,7 +227,10 @@ namespace DrawNotSoPerfect
             {
                 item.Click -= Menu_Click;
             }
-            saveFormatToolStripMenuItem.DropDownItems.Clear();
+            this.Invoke(() =>
+            {
+                saveFormatToolStripMenuItem.DropDownItems.Clear();
+            });
         }
 
         private void Menu_Click(object? sender, EventArgs e)
